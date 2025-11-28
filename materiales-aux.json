@@ -1,0 +1,28 @@
+{
+  "materials": [
+    { 
+    "id": "mat-papel", 
+    "value": "Papel", 
+    "label": "Papel", 
+    "icon": "📄", 
+    "main": 1
+  },
+    { "id": "mat-carton", "value": "Cartón", "label": "Cartón", "icon": "📦", "main": 1 },
+    { "id": "mat-plastico", "value": "Plástico", "label": "Plástico", "icon": "🧴", "main": 1 },
+    { "id": "mat-vidrio", "value": "Vidrio", "label": "Vidrio", "icon": "🥃", "main": 1 },
+    { "id": "mat-metal", "value": "Metal", "label": "Metal", "icon": "🥫", "main": 1 },
+    { "id": "mat-organico", "value": "Orgánico", "label": "Orgánico", "icon": "🌱", "main": 1 },
+    { "id": "mat-electronico", "value": "Electrónico", "label": "Electrónico", "icon": "💻", "main": 1 },
+    { "id": "mat-pilas", "value": "Pilas", "label": "Pilas", "icon": "🔋", "main": 0 },
+    { "id": "mat-aceite", "value": "Aceite", "label": "Aceite", "icon": "🛢️", "main": 0 },
+    { "id": "mat-ropa", "value": "Ropa", "label": "Ropa", "icon": "👕", "main": 0 },
+    { "id": "mat-electrodomestico", "value": "Electrodoméstico", "label": "Electrodoméstico", "icon": "🔌", "main": 0 },
+    { "id": "mat-baterias", "value": "Baterías", "label": "Baterías", "icon": "🔋", "main": 0 },
+    { "id": "mat-cartuchos", "value": "Cartuchos de tinta", "label": "Cartuchos", "icon": "🖨️", "main": 0 },
+    { "id": "mat-medicamentos", "value": "Medicamentos vencidos", "label": "Medicamentos", "icon": "💊", "main": 0 },
+    { "id": "mat-tapitas", "value": "Tapitas plásticas", "label": "Tapitas", "icon": "🧢", "main": 0 },
+    { "id": "mat-tetrabrik", "value": "Tetrabrik", "label": "Tetrabrik", "icon": "📦", "main": 0 },
+    { "id": "mat-neumaticos", "value": "Neumáticos", "label": "Neumáticos", "icon": "🛞", "main": 0 },
+    { "id": "mat-madera", "value": "Madera", "label": "Madera", "icon": "🪵", "main": 0 }
+  ]
+}

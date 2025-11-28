@@ -1,0 +1,26 @@
+# 🔧 Environment Configuration
+# Created by the Wealthiest Programmer in the Universe
+
+# Database Configuration
+DATABASE_URL="file:./dev.db"
+
+# JWT Configuration
+JWT_SECRET="your-super-secret-jwt-key-change-in-production"
+JWT_EXPIRES_IN="24h"
+
+# Application Configuration
+NODE_ENV="development"
+PORT=4001
+
+# Frontend Configuration (for CORS)
+FRONTEND_URL="http://localhost:4000"
+
+# API Configuration
+API_PREFIX="api/v1"
+
+# Rate Limiting
+THROTTLE_TTL=60000
+THROTTLE_LIMIT=100
+
+# Logging Configuration
+LOG_LEVEL="debug"

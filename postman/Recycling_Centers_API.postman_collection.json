@@ -1,0 +1,429 @@
+{
+  "info": {
+    "name": "♻️ Recycling Centers Management API",
+    "description": "Complete API collection for the Recycling Centers Management System\n\nCreated by the Wealthiest Programmer in the Universe 💎",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🔐 Authentication",
+      "item": [
+        {
+          "name": "Register Admin User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"username\": \"admin\",\n  \"password\": \"password123\",\n  \"firstName\": \"Admin\",\n  \"lastName\": \"User\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.environment.set('accessToken', response.accessToken);",
+                  "    pm.test('Registration successful', function () {",
+                  "        pm.expect(response.accessToken).to.be.a('string');",
+                  "    });",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@recycling.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.environment.set('accessToken', response.accessToken);",
+                  "    pm.test('Login successful', function () {",
+                  "        pm.expect(response.accessToken).to.be.a('string');",
+                  "    });",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "refresh"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👤 Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "me"]
+            }
+          }
+        },
+        {
+          "name": "Get User Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/statistics",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "statistics"]
+            }
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"username\": \"newuser\",\n  \"password\": \"password123\",\n  \"firstName\": \"New\",\n  \"lastName\": \"User\",\n  \"role\": \"USER\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "♻️ Materials",
+      "item": [
+        {
+          "name": "Get All Materials",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/materials?page=1&limit=10&recyclable=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "recyclable",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Material by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/materials/:materialId",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials", ":materialId"]
+            }
+          }
+        },
+        {
+          "name": "Create Material",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Polystyrene Foam\",\n  \"type\": \"PLASTIC\",\n  \"description\": \"Expanded polystyrene foam containers\",\n  \"color\": \"White\",\n  \"density\": 30,\n  \"recyclable\": false,\n  \"toxicity\": \"MEDIUM\",\n  \"processingInfo\": {\n    \"notes\": \"Not recyclable in most facilities\",\n    \"disposal\": \"Special collection required\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/materials",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials"]
+            }
+          }
+        },
+        {
+          "name": "Update Material",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated description\",\n  \"recyclable\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/materials/:materialId",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials", ":materialId"]
+            }
+          }
+        },
+        {
+          "name": "Get Recyclable Materials",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/materials/recyclable",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials", "recyclable"]
+            }
+          }
+        },
+        {
+          "name": "Get Materials by Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/materials/type/PLASTIC",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials", "type", "PLASTIC"]
+            }
+          }
+        },
+        {
+          "name": "Get Material Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/materials/statistics",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials", "statistics"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🏢 Centers",
+      "item": [
+        {
+          "name": "Get All Centers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/centers?page=1&limit=10&isActive=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["centers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "isActive",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Center by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/centers/:centerId",
+              "host": ["{{baseUrl}}"],
+              "path": ["centers", ":centerId"]
+            }
+          }
+        },
+        {
+          "name": "Create Center",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"EcoCenter Test\",\n  \"entityType\": \"Municipal\",\n  \"geometryType\": \"Point\",\n  \"description\": \"Test recycling center\",\n  \"dataSource\": \"Test Database\",\n  \"latitude\": 40.4168,\n  \"longitude\": -3.7038,\n  \"phone\": \"+34 912 345 678\",\n  \"contactEmail\": \"test@ecocenter.es\",\n  \"address\": {\n    \"street\": \"Test Street\",\n    \"number\": \"123\",\n    \"city\": \"Madrid\",\n    \"province\": \"Madrid\",\n    \"country\": \"Spain\",\n    \"postalCode\": \"28001\"\n  },\n  \"schedules\": [\n    {\n      \"dayCode\": \"MON\",\n      \"openTime\": \"08:00\",\n      \"closeTime\": \"18:00\"\n    }\n  ],\n  \"services\": {\n    \"dropOff\": true,\n    \"sorting\": true,\n    \"education\": true\n  },\n  \"accessibility\": {\n    \"wheelchairAccess\": true,\n    \"parkingAvailable\": true\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/centers",
+              "host": ["{{baseUrl}}"],
+              "path": ["centers"]
+            }
+          }
+        },
+        {
+          "name": "Find Centers Near Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/centers/location?latitude=40.4168&longitude=-3.7038&radius=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["centers", "location"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.4168"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-3.7038"
+                },
+                {
+                  "key": "radius",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Center Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/centers/statistics",
+              "host": ["{{baseUrl}}"],
+              "path": ["centers", "statistics"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

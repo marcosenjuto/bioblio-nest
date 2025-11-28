@@ -1,0 +1,297 @@
+// This is your enhanced Prisma Schema for the Recycling Centers Management System
+// Created by the Wealthiest Programmer in the Universe 💎
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// =============================================================================
+// USER MANAGEMENT MODELS
+// =============================================================================
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  role      String   @default("USER") // Changed from UserRole enum to String
+  isActive  Boolean  @default(true)
+  avatar    String?
+  reputation Int      @default(0) // User reputation for auto-approval
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relationships
+  centers          Center[]         @relation("UserCenters")
+  objectVersions   ObjectVersion[]  @relation("UserObjectVersions")
+  moderationQueue  ModerationQueue[] @relation("ModeratorQueue")
+  refreshTokens    RefreshToken[]
+  
+  @@map("users")
+}
+
+// Note: UserRole enum replaced with String values: "ADMIN", "MANAGER", "USER"
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relationships
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([token])
+  @@map("refresh_tokens")
+}
+
+// =============================================================================
+// PRODUCT/MATERIAL MODELS
+// =============================================================================
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String
+  subcategory String?
+  barcode     String?  @unique
+  weight      Float?
+  dimensions  String?  // JSON as string: {length, width, height}
+  price       Float?
+  
+  // Environmental data
+  recyclable    Boolean @default(false)
+  carbonFootprint Float?
+  ecoScore      Int?    // 1-100 rating
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relationships
+  materials Material[] @relation("ProductMaterials")
+  
+  @@map("products")
+}
+
+model Material {
+  id            String      @id @default(cuid())
+  name          String      // Spanish name
+  nameEN        String?     // English name
+  label         String?     // Display label for the material
+  icon          String?     // Material icon (emoji)
+  main          Boolean?    // Whether this is a main material category
+  type          String      // Changed from MaterialType enum to String
+  description   String?
+  color         String?
+  density       Float?      // kg/m³
+  recyclable    Boolean     @default(true)
+  toxicity      String      @default("LOW") // Changed from ToxicityLevel enum to String
+  processingInfo String?    // Processing instructions as JSON string
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relationships
+  centers   Center[]  @relation("CenterMaterials")
+  products  Product[] @relation("ProductMaterials")
+  
+  @@map("materials")
+}
+
+// Note: MaterialType enum replaced with String values: 
+// "PLASTIC", "METAL", "GLASS", "PAPER", "CARDBOARD", "ELECTRONIC", 
+// "ORGANIC", "TEXTILE", "BATTERY", "CHEMICAL", "OTHER"
+
+// Note: ToxicityLevel enum replaced with String values: 
+// "LOW", "MEDIUM", "HIGH", "HAZARDOUS"
+
+// =============================================================================
+// CENTER MANAGEMENT MODELS
+// =============================================================================
+
+model Center {
+  id             String      @id @default(cuid())
+  name           String
+  objectType     String      @map("object_type")
+  geometryType   String      @map("geometry_type")
+  description    String?
+  lastUpdated    DateTime    @map("last_updated") @default(now())
+  dataSource     String      @map("data_source")
+  latitude       Float?
+  longitude      Float?
+  polygon        String?     // JSON as string: for polygons, store array of points
+  
+  // Additional center properties
+  capacity       Int?        // Maximum capacity
+  currentLoad    Int?        @default(0) @map("current_load")
+  isActive       Boolean     @default(true) @map("is_active")
+  phone          String?     @map("contact_phone")
+  email          String?     @map("contact_email")
+  website        String?
+  
+  // Social media fields
+  socialMedia    String?     @map("social_media") // JSON as string: {facebook, instagram, twitter, linkedin}
+  
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  // Relationships
+  object         Object?     @relation(fields: [id], references: [id])
+  address        Address?
+  schedules      Schedule[]
+  materials      Material[]  @relation("CenterMaterials")
+  services       Services?
+  accessibility  Accessibility?
+  managers       User[]      @relation("UserCenters")
+  
+  @@map("centers")
+}
+
+model Address {
+  id          String  @id @default(cuid())
+  center      Center  @relation(fields: [centerId], references: [id], onDelete: Cascade)
+  centerId    String  @unique @map("center_id")
+  street      String?
+  number      String?
+  fullAddress String? @map("full_address") // Combined street + number for display
+  city        String
+  province    String?
+  country     String  @default("Spain")
+  postalCode  String? @map("postal_code")
+  
+  // Coordinates (can be different from center's main coordinates)
+  latitude  Float?
+  longitude Float?
+  
+  @@map("addresses")
+}
+
+model Schedule {
+  id        String @id @default(cuid())
+  center    Center @relation(fields: [centerId], references: [id], onDelete: Cascade)
+  centerId  String @map("center_id")
+  dayCode   String @map("day_code") // MON, TUE, WED, etc.
+  openTime  String @map("open_time")  // Format: "HH:MM"
+  closeTime String @map("close_time") // Format: "HH:MM"
+  note      String?
+  isActive  Boolean @default(true) @map("is_active")
+  
+  @@unique([centerId, dayCode])
+  @@map("schedules")
+}
+
+model Services {
+  id                String  @id @default(cuid())
+  center           Center  @relation(fields: [centerId], references: [id], onDelete: Cascade)
+  centerId         String  @unique @map("center_id")
+  
+  // Service flags
+  dropOff          Boolean @default(false) @map("drop_off")
+  pickUp           Boolean @default(false) @map("pick_up")
+  sorting          Boolean @default(false)
+  cleaning         Boolean @default(false)
+  repair           Boolean @default(false)
+  buyback          Boolean @default(false)
+  education        Boolean @default(false)
+  consultation     Boolean @default(false)
+  
+  // Additional service info
+  specialServices  String?  @map("special_services") // JSON as string: Array of custom services
+  fees            String?  // JSON as string: Fee structure
+  requirements    String? // Special requirements or restrictions
+  
+  @@map("services")
+}
+
+model Accessibility {
+  id                 String  @id @default(cuid())
+  center            Center  @relation(fields: [centerId], references: [id], onDelete: Cascade)
+  centerId          String  @unique @map("center_id")
+  
+  // Accessibility features
+  wheelchairAccess  Boolean @default(false) @map("wheelchair_access")
+  parkingAvailable  Boolean @default(false) @map("parking_available")
+  publicTransport   Boolean @default(false) @map("public_transport")
+  signage          Boolean @default(false) // Clear signage available
+  assistance       Boolean @default(false) // Staff assistance available
+  
+  // Additional accessibility info
+  accessNotes      String? @map("access_notes")
+  transportInfo    String? @map("transport_info") // JSON as string: Public transport details
+  
+  @@map("accessibility")
+}
+
+// =============================================================================
+// COLLABORATION SYSTEM MODELS
+// =============================================================================
+
+model Object {
+  id                 String  @id @default(cuid())
+  currentVersionId   String? @unique @map("current_version_id")
+  status             String  @default("active") // active, inactive, archived
+  
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  // Relationships
+  currentVersion ObjectVersion? @relation("CurrentVersion", fields: [currentVersionId], references: [id])
+  versions       ObjectVersion[] @relation("ObjectVersions")
+  center         Center?         // One-to-one relationship with Center
+  
+  @@map("objects")
+}
+
+model ObjectVersion {
+  id        String   @id @default(cuid())
+  objectId  String   @map("object_id")
+  userId    String   @map("user_id")
+  dataJson  String   @map("data_json") // JSON string containing the object data
+  status    String   @default("pending") // pending, approved, rejected
+  comment   String?  // Optional comment explaining the change
+  
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  // Relationships
+  object         Object              @relation("ObjectVersions", fields: [objectId], references: [id], onDelete: Cascade)
+  user           User                @relation("UserObjectVersions", fields: [userId], references: [id])
+  currentObject  Object?             @relation("CurrentVersion")
+  moderationItem ModerationQueue?
+  
+  @@map("object_versions")
+}
+
+model ModerationQueue {
+  id           String   @id @default(cuid())
+  versionId    String   @unique @map("version_id")
+  moderatorId  String?  @map("moderator_id")
+  decision     String?  // approved, rejected
+  notes        String?  // Moderator notes
+  reviewedAt   DateTime? @map("reviewed_at")
+  
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  // Relationships
+  version   ObjectVersion @relation(fields: [versionId], references: [id], onDelete: Cascade)
+  moderator User?         @relation("ModeratorQueue", fields: [moderatorId], references: [id])
+  
+  @@map("moderation_queue")
+}

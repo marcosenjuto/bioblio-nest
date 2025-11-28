@@ -1,0 +1,183 @@
+{
+  "materials": [
+    {
+      "name": "aceite",
+      "nameEN": "Oil",
+      "icon": "🛢️",
+      "main": true,
+      "description": "Aceites usados de cocina y motor"
+    },
+    {
+      "name": "acero",
+      "nameEN": "Steel",
+      "icon": "🔩",
+      "main": true,
+      "description": "Acero y productos de acero",
+      "parentType": "metal"
+    },
+    {
+      "name": "aluminio",
+      "nameEN": "Aluminum",
+      "icon": "🥫",
+      "main": true,
+      "description": "Aluminio, latas y envases",
+      "parentType": "metal"
+    },
+    {
+      "name": "baterías",
+      "nameEN": "Batteries",
+      "icon": "🔋",
+      "main": true,
+      "description": "Baterías recargables y de litio"
+    },
+    {
+      "name": "bronce",
+      "nameEN": "Bronze",
+      "icon": "🟤",
+      "main": false,
+      "description": "Bronce y aleaciones",
+      "parentType": "metal"
+    },
+    {
+      "name": "cartón",
+      "nameEN": "Cardboard",
+      "icon": "📦",
+      "main": true,
+      "description": "Cartón corrugado y cajas"
+    },
+    {
+      "name": "cobre",
+      "nameEN": "Copper",
+      "icon": "🟠",
+      "main": false,
+      "description": "Cobre, cables y tuberías",
+      "parentType": "metal"
+    },
+    {
+      "name": "computadoras",
+      "nameEN": "Computers",
+      "icon": "💻",
+      "main": true,
+      "description": "Computadoras y equipos informáticos",
+      "parentType": "electrónicos"
+    },
+    {
+      "name": "electrónicos",
+      "nameEN": "Electronics",
+      "icon": "🔌",
+      "main": true,
+      "description": "Dispositivos electrónicos en general"
+    },
+    {
+      "name": "hierro",
+      "nameEN": "Iron",
+      "icon": "⚙️",
+      "main": false,
+      "description": "Hierro y productos ferrosos",
+      "parentType": "metal"
+    },
+    {
+      "name": "latas",
+      "nameEN": "Cans",
+      "icon": "🥫",
+      "main": true,
+      "description": "Latas de aluminio y hojalata",
+      "parentType": "aluminio"
+    },
+    {
+      "name": "lámparas de bajo consumo",
+      "nameEN": "Energy-saving lamps",
+      "icon": "💡",
+      "main": false,
+      "description": "Lámparas fluorescentes compactas",
+      "parentType": "electrónicos"
+    },
+    {
+      "name": "metal",
+      "nameEN": "Metal",
+      "icon": "🔩",
+      "main": true,
+      "description": "Metales en general"
+    },
+    {
+      "name": "orgánicos",
+      "nameEN": "Organic",
+      "icon": "🌱",
+      "main": true,
+      "description": "Residuos orgánicos y compostables"
+    },
+    {
+      "name": "papel",
+      "nameEN": "Paper",
+      "icon": "📄",
+      "main": true,
+      "description": "Papel blanco y de oficina"
+    },
+    {
+      "name": "pilas",
+      "nameEN": "Batteries",
+      "icon": "🔋",
+      "main": true,
+      "description": "Pilas alcalinas y secas",
+      "parentType": "baterías"
+    },
+    {
+      "name": "plástico",
+      "nameEN": "Plastic",
+      "icon": "♻️",
+      "main": true,
+      "description": "Plásticos reciclables (PET, HDPE, PP, etc.)"
+    },
+    {
+      "name": "residuos especiales",
+      "nameEN": "Special waste",
+      "icon": "⚠️",
+      "main": false,
+      "description": "Residuos peligrosos y especiales"
+    },
+    {
+      "name": "residuos informáticos",
+      "nameEN": "Computer waste",
+      "icon": "💻",
+      "main": false,
+      "description": "Residuos de equipos informáticos",
+      "parentType": "electrónicos"
+    },
+    {
+      "name": "ropa",
+      "nameEN": "Clothing",
+      "icon": "👕",
+      "main": true,
+      "description": "Textiles, ropa y calzado"
+    },
+    {
+      "name": "tubos fluorescentes",
+      "nameEN": "Fluorescent tubes",
+      "icon": "💡",
+      "main": false,
+      "description": "Tubos fluorescentes y de neón",
+      "parentType": "electrónicos"
+    },
+    {
+      "name": "vidrio",
+      "nameEN": "Glass",
+      "icon": "🍾",
+      "main": true,
+      "description": "Vidrio y cristal reciclable"
+    }
+  ],
+  "compoundMaterials": [
+    {
+      "name": "tetra pak",
+      "nameEN": "Tetra Pak",
+      "icon": "📦",
+      "main": true,
+      "description": "Envases multicapa de bebidas",
+      "components": [
+        { "material": "cartón", "percentage": 75, "isPrimary": true },
+        { "material": "plástico", "percentage": 20, "isPrimary": false },
+        { "material": "aluminio", "percentage": 5, "isPrimary": false }
+      ]
+    }
+  ]
+}

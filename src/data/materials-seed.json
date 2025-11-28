@@ -1,0 +1,180 @@
+{
+  "materials": [
+    {
+      "name": "aceite",
+      "nameEN": "Oil",
+      "type": "CHEMICAL",
+      "icon": "🛢️",
+      "main": true,
+      "description": "Aceites usados de cocina y motor"
+    },
+    {
+      "name": "acero",
+      "nameEN": "Steel",
+      "type": "METAL",
+      "icon": "🔩",
+      "main": true,
+      "description": "Acero y productos de acero"
+    },
+    {
+      "name": "aluminio",
+      "nameEN": "Aluminum",
+      "type": "METAL",
+      "icon": "🥫",
+      "main": true,
+      "description": "Aluminio, latas y envases"
+    },
+    {
+      "name": "baterías",
+      "nameEN": "Batteries",
+      "type": "BATTERY",
+      "icon": "🔋",
+      "main": true,
+      "description": "Baterías recargables y de litio"
+    },
+    {
+      "name": "bronce",
+      "nameEN": "Bronze",
+      "type": "METAL",
+      "icon": "🟤",
+      "main": false,
+      "description": "Bronce y aleaciones"
+    },
+    {
+      "name": "cartón",
+      "nameEN": "Cardboard",
+      "type": "CARDBOARD",
+      "icon": "📦",
+      "main": true,
+      "description": "Cartón corrugado y cajas"
+    },
+    {
+      "name": "cobre",
+      "nameEN": "Copper",
+      "type": "METAL",
+      "icon": "🟠",
+      "main": false,
+      "description": "Cobre, cables y tuberías"
+    },
+    {
+      "name": "computadoras",
+      "nameEN": "Computers",
+      "type": "ELECTRONIC",
+      "icon": "💻",
+      "main": true,
+      "description": "Computadoras y equipos informáticos"
+    },
+    {
+      "name": "electrónicos",
+      "nameEN": "Electronics",
+      "type": "ELECTRONIC",
+      "icon": "🔌",
+      "main": true,
+      "description": "Dispositivos electrónicos en general"
+    },
+    {
+      "name": "hierro",
+      "nameEN": "Iron",
+      "type": "METAL",
+      "icon": "⚙️",
+      "main": false,
+      "description": "Hierro y productos ferrosos"
+    },
+    {
+      "name": "latas",
+      "nameEN": "Cans",
+      "type": "METAL",
+      "icon": "🥫",
+      "main": true,
+      "description": "Latas de aluminio y hojalata"
+    },
+    {
+      "name": "lámparas de bajo consumo",
+      "nameEN": "Energy-saving lamps",
+      "type": "ELECTRONIC",
+      "icon": "💡",
+      "main": false,
+      "description": "Lámparas fluorescentes compactas"
+    },
+    {
+      "name": "metal",
+      "nameEN": "Metal",
+      "type": "METAL",
+      "icon": "🔩",
+      "main": true,
+      "description": "Metales en general"
+    },
+    {
+      "name": "orgánicos",
+      "nameEN": "Organic",
+      "type": "ORGANIC",
+      "icon": "🌱",
+      "main": true,
+      "description": "Residuos orgánicos y compostables"
+    },
+    {
+      "name": "papel",
+      "nameEN": "Paper",
+      "type": "PAPER",
+      "icon": "📄",
+      "main": true,
+      "description": "Papel blanco y de oficina"
+    },
+    {
+      "name": "pilas",
+      "nameEN": "Batteries",
+      "type": "BATTERY",
+      "icon": "🔋",
+      "main": true,
+      "description": "Pilas alcalinas y secas"
+    },
+    {
+      "name": "plástico",
+      "nameEN": "Plastic",
+      "type": "PLASTIC",
+      "icon": "🧴​",
+      "main": true,
+      "description": "Plásticos reciclables (PET, HDPE, PP, etc.)"
+    },
+    {
+      "name": "residuos especiales",
+      "nameEN": "Special waste",
+      "type": "HAZARDOUS",
+      "icon": "⚠️",
+      "main": false,
+      "description": "Residuos peligrosos y especiales"
+    },
+    {
+      "name": "residuos informáticos",
+      "nameEN": "Computer waste",
+      "type": "ELECTRONIC",
+      "icon": "💻",
+      "main": false,
+      "description": "Residuos de equipos informáticos"
+    },
+    {
+      "name": "ropa",
+      "nameEN": "Clothing",
+      "type": "TEXTILE",
+      "icon": "👕",
+      "main": true,
+      "description": "Textiles, ropa y calzado"
+    },
+    {
+      "name": "tubos fluorescentes",
+      "nameEN": "Fluorescent tubes",
+      "type": "ELECTRONIC",
+      "icon": "💡",
+      "main": false,
+      "description": "Tubos fluorescentes y de neón"
+    },
+    {
+      "name": "vidrio",
+      "nameEN": "Glass",
+      "type": "GLASS",
+      "icon": "🍾",
+      "main": true,
+      "description": "Vidrio y cristal reciclable"
+    }
+  ]
+}

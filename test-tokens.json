@@ -1,0 +1,22 @@
+{
+  "admin": {
+    "email": "admin@recycling.com",
+    "password": "admin123",
+    "username": "admin",
+    "role": "ADMIN",
+    "reputation": 0,
+    "userId": "cmg6wcius0000pqshmjnfh332",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbWc2d2NpdXMwMDAwcHFzaG1qbmZoMzMyIiwiZW1haWwiOiJhZG1pbkByZWN5Y2xpbmcuY29tIiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1OTUyOTU1NCwiZXhwIjoxNzYwMTM0MzU0fQ.yMWR_obr2_Qy5AEnlYQpGWF5SaoYs0AOIhX16MTprDg"
+  },
+  "user": {
+    "email": "testuser@example.com",
+    "password": "user123",
+    "username": "testcontributor",
+    "role": "USER",
+    "reputation": 60,
+    "userId": "cmgbd9cjb0000wcwvfkz4p26c",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbWdiZDljamIwMDAwd2N3dmZrejRwMjZjIiwiZW1haWwiOiJ0ZXN0dXNlckBleGFtcGxlLmNvbSIsInVzZXJuYW1lIjoidGVzdGNvbnRyaWJ1dG9yIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NTk1Mjk1NTQsImV4cCI6MTc2MDEzNDM1NH0.G8HYyfe5x7_Rw5kxpBb3I6jnD1R8HD01gm4KDI5u23w"
+  },
+  "expiresIn": "7d",
+  "generatedAt": "2025-10-03T22:12:34.730Z"
+}

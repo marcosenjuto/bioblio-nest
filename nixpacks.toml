@@ -1,0 +1,19 @@
+[phases.setup]
+nixPkgs = ['nodejs-18_x', 'openssl']
+
+[phases.install]
+cmds = [
+    'npm ci --only=production',
+    'npx prisma generate'
+]
+
+[phases.build]
+cmds = [
+    'npm run build'
+]
+
+[start]
+cmd = 'npx prisma migrate deploy && npm run start:prod'
+
+[variables]
+NODE_ENV = 'production'

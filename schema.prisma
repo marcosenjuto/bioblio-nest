@@ -1,0 +1,203 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String            @id @default(cuid())
+  email           String            @unique
+  username        String            @unique
+  password        String
+  firstName       String?
+  lastName        String?
+  role            String            @default("USER")
+  isActive        Boolean           @default(true)
+  avatar          String?
+  reputation      Int               @default(10)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  moderationQueue ModerationQueue[] @relation("ModeratorQueue")
+  objectVersions  ObjectVersion[]   @relation("UserObjectVersions")
+  refreshTokens   RefreshToken[]
+  articles        Article[]         @relation("UserArticles")
+  versionReviews  VersionReview[]   @relation("UserVersionReviews")
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@map("refresh_tokens")
+}
+
+model Molecule {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  smiles      String?
+  inchi       String?
+  formula     String?
+  weight      Float?
+  
+  // JSON fields for complex data
+  structure   String? // JSON
+  properties  String? // JSON
+  
+  objectId    String?  @unique @map("object_id")
+  object      BioEntity?  @relation(fields: [objectId], references: [id])
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("molecules")
+}
+
+model Protein {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  sequence    String?
+  pdbId       String?
+  
+  // JSON fields
+  metadata    String? // JSON (PdbMetadata)
+  chains      String? // JSON
+  
+  objectId    String?  @unique @map("object_id")
+  object      BioEntity?  @relation(fields: [objectId], references: [id])
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("proteins")
+}
+
+model Reaction {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  reactionString String? // SMILES/SMARTS
+  
+  // JSON fields
+  data        String? // JSON (ORD data)
+  
+  objectId    String?  @unique @map("object_id")
+  object      BioEntity?  @relation(fields: [objectId], references: [id])
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("reactions")
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   // Markdown or HTML
+  summary     String?
+  tags        String?  // JSON array of strings
+  
+  authorId    String   @map("author_id")
+  author      User     @relation("UserArticles", fields: [authorId], references: [id])
+  
+  objectId    String?  @unique @map("object_id")
+  object      BioEntity?  @relation(fields: [objectId], references: [id])
+
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("articles")
+}
+
+model BioEntity {
+  id               String          @id @default(cuid())
+  currentVersionId String?         @unique @map("current_version_id")
+  status           String          @default("active")
+  createdAt        DateTime        @default(now()) @map("created_at")
+  
+  molecule         Molecule?
+  protein          Protein?
+  reaction         Reaction?
+  article          Article?
+
+  versions         ObjectVersion[] @relation("ObjectVersions")
+  currentVersion   ObjectVersion?  @relation("CurrentVersion", fields: [currentVersionId], references: [id])
+
+  @@map("bio_entities")
+}
+
+model ObjectVersion {
+  id               String           @id @default(cuid())
+  objectId         String           @map("object_id")
+  userId           String           @map("user_id")
+  dataJson         String           @map("data_json")
+  status           String           @default("pending")
+  comment          String?
+  createdAt        DateTime         @default(now()) @map("created_at")
+  changedFields    String?          @map("changed_fields")
+  previousDataJson String?          @map("previous_data_json")
+  moderationItem   ModerationQueue?
+  reviews          VersionReview[]  @relation("VersionReviews")
+  user             User             @relation("UserObjectVersions", fields: [userId], references: [id])
+  object           BioEntity        @relation("ObjectVersions", fields: [objectId], references: [id], onDelete: Cascade)
+  currentObject    BioEntity?       @relation("CurrentVersion")
+
+  @@map("object_versions")
+}
+
+model ModerationQueue {
+  id          String        @id @default(cuid())
+  versionId   String        @unique @map("version_id")
+  moderatorId String?       @map("moderator_id")
+  decision    String?
+  notes       String?
+  reviewedAt  DateTime?     @map("reviewed_at")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  moderator   User?         @relation("ModeratorQueue", fields: [moderatorId], references: [id])
+  version     ObjectVersion @relation(fields: [versionId], references: [id], onDelete: Cascade)
+
+  @@map("moderation_queue")
+}
+
+model VersionReview {
+  id              String        @id @default(cuid())
+  versionId       String        @map("version_id")
+  userId          String        @map("user_id")
+  vote            String        // 'approve' or 'reject'
+  comment         String?
+  reputationValue Int           @map("reputation_value") // Snapshot of user's reputation at review time
+  createdAt       DateTime      @default(now()) @map("created_at")
+  version         ObjectVersion @relation("VersionReviews", fields: [versionId], references: [id], onDelete: Cascade)
+  user            User          @relation("UserVersionReviews", fields: [userId], references: [id])
+
+  @@unique([versionId, userId]) // Each user can only review a version once
+  @@map("version_reviews")
+}
+
+model ModerationConfig {
+  id                  String   @id @default(cuid())
+  approvalThreshold   Int      @default(1) @map("approval_threshold") // Reputation needed for auto-approval
+  rejectionThreshold  Int      @default(1) @map("rejection_threshold") // Reputation needed for auto-rejection
+  minReviewsRequired  Int      @default(1) @map("min_reviews_required") // Minimum reviews before auto-decision
+  updatedAt           DateTime @updatedAt @map("updated_at")
+  updatedBy           String?  @map("updated_by") // Admin user ID who last updated
+  
+  @@map("moderation_config")
+}
+
+
+
