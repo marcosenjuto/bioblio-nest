@@ -46,15 +46,20 @@ model RefreshToken {
 model Molecule {
   id          String   @id @default(cuid())
   name        String
+  iupacName   String?  @map("iupac_name")
   description String?
+  type        String?  // 'small-molecule', 'protein', etc.
+  
+  // Core identifiers
   smiles      String?
   inchi       String?
   formula     String?
   weight      Float?
   
   // JSON fields for complex data
-  structure   String? // JSON
-  properties  String? // JSON
+  namesJson       String? @map("names_json")       // Full names object
+  structureJson   String? @map("structure_json")   // Full structure object
+  propertiesJson  String? @map("properties_json")  // molecular, physical, thermodynamic, chemical, spectroscopy, safety
   
   objectId    String?  @unique @map("object_id")
   object      BioEntity?  @relation(fields: [objectId], references: [id])
@@ -69,12 +74,14 @@ model Protein {
   id          String   @id @default(cuid())
   name        String
   description String?
+  type        String?  // 'protein', 'enzyme'
   sequence    String?
   pdbId       String?
   
   // JSON fields
-  metadata    String? // JSON (PdbMetadata)
-  chains      String? // JSON
+  chainsJson      String? @map("chains_json")      // Chain[]
+  metadataJson    String? @map("metadata_json")    // PdbMetadata, organism, experimental, classification
+  detailsJson     String? @map("details_json")     // polymerEntities, assemblies, annotations, validation
   
   objectId    String?  @unique @map("object_id")
   object      BioEntity?  @relation(fields: [objectId], references: [id])
@@ -90,9 +97,12 @@ model Reaction {
   name        String
   description String?
   reactionString String? // SMILES/SMARTS
+  category    String?
   
   // JSON fields
-  data        String? // JSON (ORD data)
+  reactantsJson String? @map("reactants_json") // Reagent[]
+  productsJson  String? @map("products_json")  // Reagent[]
+  dataJson      String? @map("data_json")      // ORD data and other fields
   
   objectId    String?  @unique @map("object_id")
   object      BioEntity?  @relation(fields: [objectId], references: [id])
