@@ -16,16 +16,6 @@ import { PrismaClient } from '@prisma/client';
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor() {
-    // Validate DATABASE_URL exists
-    if (!process.env.DATABASE_URL) {
-      throw new Error(
-        '❌ DATABASE_URL environment variable is not set!\n' +
-        '   Please set it in your environment or .env file.\n' +
-        '   Example: DATABASE_URL="file:./dev.db" for SQLite\n' +
-        '   Example: DATABASE_URL="postgresql://user:pass@host:5432/db" for PostgreSQL'
-      );
-    }
-
     super({
       // Connection configuration
       datasources: {
