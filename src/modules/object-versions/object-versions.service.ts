@@ -317,8 +317,8 @@ export class ObjectVersionsService {
           where: { id: version.object.molecule.id },
           data: {
             ...moleculeData,
-            structure: structure ? JSON.stringify(structure) : undefined,
-            properties: properties ? JSON.stringify(properties) : undefined,
+            structureJson: structure ? JSON.stringify(structure) : undefined,
+            propertiesJson: properties ? JSON.stringify(properties) : undefined,
           }
         });
       } else if (version.object.protein) {
@@ -327,8 +327,8 @@ export class ObjectVersionsService {
           where: { id: version.object.protein.id },
           data: {
             ...proteinData,
-            metadata: metadata ? JSON.stringify(metadata) : undefined,
-            chains: chains ? JSON.stringify(chains) : undefined,
+            metadataJson: metadata ? JSON.stringify(metadata) : undefined,
+            chainsJson: chains ? JSON.stringify(chains) : undefined,
           }
         });
       } else if (version.object.reaction) {
@@ -337,7 +337,7 @@ export class ObjectVersionsService {
           where: { id: version.object.reaction.id },
           data: {
             ...reactionData,
-            data: reactionDataJson ? JSON.stringify(reactionDataJson) : undefined,
+            dataJson: reactionDataJson ? JSON.stringify(reactionDataJson) : undefined,
           }
         });
       } else if (version.object.article) {

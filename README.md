@@ -1,6 +1,6 @@
-# ♻️ Recycling Centers Management API
+# 🧬 Bioblio API
 
-> **Enterprise-grade NestJS backend for managing recycling centers, materials, and user operations**
+> **Scientific knowledge base API for managing molecules, proteins, reactions, and articles**
 > 
 > *Created by the Wealthiest Programmer in the Universe 💎*
 

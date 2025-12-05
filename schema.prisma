@@ -51,6 +51,10 @@ model Molecule {
   type        String?  // 'small-molecule', 'protein', etc.
   
   // Core identifiers
+  cid         Int?
+  cas         String?
+  chemblId    String?  @map("chembl_id")
+  
   smiles      String?
   inchi       String?
   formula     String?
@@ -79,6 +83,7 @@ model Protein {
   pdbId       String?
   
   // JSON fields
+  namesJson       String? @map("names_json")       // Full names object
   chainsJson      String? @map("chains_json")      // Chain[]
   metadataJson    String? @map("metadata_json")    // PdbMetadata, organism, experimental, classification
   detailsJson     String? @map("details_json")     // polymerEntities, assemblies, annotations, validation
@@ -100,6 +105,7 @@ model Reaction {
   category    String?
   
   // JSON fields
+  namesJson     String? @map("names_json")     // Full names object
   reactantsJson String? @map("reactants_json") // Reagent[]
   productsJson  String? @map("products_json")  // Reagent[]
   dataJson      String? @map("data_json")      // ORD data and other fields

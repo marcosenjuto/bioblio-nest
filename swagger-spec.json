@@ -1791,8 +1791,8 @@
     }
   },
   "info": {
-    "title": "♻️ Recycling Centers Management API",
-    "description": "Enterprise-grade API for managing recycling centers, materials, and user operations",
+    "title": "🧬 Bioblio API",
+    "description": "Scientific knowledge base API for managing molecules, proteins, reactions, and articles",
     "version": "1.0",
     "contact": {
       "name": "The Wealthiest Programmer",
@@ -1814,16 +1814,24 @@
       "description": "User management operations"
     },
     {
-      "name": "Centers",
-      "description": "Recycling center management"
+      "name": "Molecules",
+      "description": "Molecule data management"
     },
     {
-      "name": "Materials",
-      "description": "Material type management"
+      "name": "Proteins",
+      "description": "Protein data management"
     },
     {
-      "name": "Products",
-      "description": "Product catalog management"
+      "name": "Reactions",
+      "description": "Chemical reaction management"
+    },
+    {
+      "name": "Articles",
+      "description": "Scientific article management"
+    },
+    {
+      "name": "Moderation",
+      "description": "Content moderation workflow"
     }
   ],
   "servers": [],
@@ -2136,193 +2144,633 @@
       "CreateMoleculeDto": {
         "type": "object",
         "properties": {
-          "name": {
+          "type": {
             "type": "string",
-            "description": "Name of the molecule"
+            "description": "Type of the molecule",
+            "enum": [
+              "small-molecule",
+              "protein",
+              "enzyme",
+              "nucleic-acid",
+              "other"
+            ]
           },
-          "description": {
-            "type": "string",
-            "description": "Description of the molecule"
-          },
-          "smiles": {
-            "type": "string",
-            "description": "SMILES string"
-          },
-          "inchi": {
-            "type": "string",
-            "description": "InChI string"
-          },
-          "formula": {
-            "type": "string",
-            "description": "Molecular formula"
-          },
-          "weight": {
+          "cid": {
             "type": "number",
-            "description": "Molecular weight"
+            "description": "PubChem CID"
+          },
+          "cas": {
+            "type": "string",
+            "description": "CAS Registry Number"
+          },
+          "chemblId": {
+            "type": "string",
+            "description": "ChEMBL ID"
+          },
+          "names": {
+            "type": "object",
+            "description": "Names object (iupac, common, etc.)"
           },
           "structure": {
             "type": "object",
-            "description": "Structure data (JSON)"
+            "description": "Structure data (SMILES, InChI, etc.)"
           },
-          "properties": {
+          "molecular": {
             "type": "object",
-            "description": "Properties data (JSON)"
+            "description": "Molecular properties (weight, mass, charge)"
+          },
+          "physical": {
+            "type": "object",
+            "description": "Physical properties"
+          },
+          "thermodynamic": {
+            "type": "object",
+            "description": "Thermodynamic properties"
+          },
+          "chemical": {
+            "type": "object",
+            "description": "Chemical properties"
+          },
+          "spectroscopy": {
+            "type": "object",
+            "description": "Spectroscopy data"
+          },
+          "safety": {
+            "type": "object",
+            "description": "Safety information"
+          },
+          "sources": {
+            "description": "Data sources",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
-          "name"
+          "type",
+          "names",
+          "structure",
+          "molecular"
         ]
       },
       "UpdateMoleculeDto": {
         "type": "object",
         "properties": {
-          "name": {
+          "type": {
             "type": "string",
-            "description": "Name of the molecule"
+            "description": "Type of the molecule",
+            "enum": [
+              "small-molecule",
+              "protein",
+              "enzyme",
+              "nucleic-acid",
+              "other"
+            ]
           },
-          "description": {
-            "type": "string",
-            "description": "Description of the molecule"
-          },
-          "smiles": {
-            "type": "string",
-            "description": "SMILES string"
-          },
-          "inchi": {
-            "type": "string",
-            "description": "InChI string"
-          },
-          "formula": {
-            "type": "string",
-            "description": "Molecular formula"
-          },
-          "weight": {
+          "cid": {
             "type": "number",
-            "description": "Molecular weight"
+            "description": "PubChem CID"
+          },
+          "cas": {
+            "type": "string",
+            "description": "CAS Registry Number"
+          },
+          "chemblId": {
+            "type": "string",
+            "description": "ChEMBL ID"
+          },
+          "names": {
+            "type": "object",
+            "description": "Names object (iupac, common, etc.)"
           },
           "structure": {
             "type": "object",
-            "description": "Structure data (JSON)"
+            "description": "Structure data (SMILES, InChI, etc.)"
           },
-          "properties": {
+          "molecular": {
             "type": "object",
-            "description": "Properties data (JSON)"
+            "description": "Molecular properties (weight, mass, charge)"
+          },
+          "physical": {
+            "type": "object",
+            "description": "Physical properties"
+          },
+          "thermodynamic": {
+            "type": "object",
+            "description": "Thermodynamic properties"
+          },
+          "chemical": {
+            "type": "object",
+            "description": "Chemical properties"
+          },
+          "spectroscopy": {
+            "type": "object",
+            "description": "Spectroscopy data"
+          },
+          "safety": {
+            "type": "object",
+            "description": "Safety information"
+          },
+          "sources": {
+            "description": "Data sources",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
-          "name"
+          "type",
+          "names",
+          "structure",
+          "molecular"
         ]
       },
       "CreateProteinDto": {
         "type": "object",
         "properties": {
-          "name": {
+          "type": {
             "type": "string",
-            "description": "Name of the protein"
+            "description": "Type of the protein",
+            "enum": [
+              "protein",
+              "enzyme"
+            ]
+          },
+          "names": {
+            "type": "object",
+            "description": "Names object (iupac, common, etc.)"
           },
           "description": {
             "type": "string",
             "description": "Description"
           },
-          "sequence": {
-            "type": "string",
-            "description": "Amino acid sequence"
-          },
           "pdbId": {
             "type": "string",
             "description": "PDB ID"
           },
+          "chains": {
+            "description": "Chains data",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pdbMetadata": {
+            "type": "object",
+            "description": "PDB Metadata"
+          },
+          "polymerEntities": {
+            "description": "Polymer Entities",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nonPolymerEntities": {
+            "description": "Non-Polymer Entities",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "assemblies": {
+            "description": "Assemblies",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "annotations": {
+            "type": "object",
+            "description": "Annotations"
+          },
+          "validation": {
+            "type": "object",
+            "description": "Validation metrics"
+          },
+          "ligands": {
+            "description": "Ligands bound to the protein",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "classification": {
+            "type": "string",
+            "description": "Classification"
+          },
+          "organism": {
+            "type": "object",
+            "description": "Organism source"
+          },
+          "experimental": {
+            "type": "object",
+            "description": "Experimental data"
+          },
+          "ecNumber": {
+            "type": "string",
+            "description": "EC Number (for enzymes)"
+          },
+          "enzymeClass": {
+            "type": "string",
+            "description": "Enzyme Class"
+          },
+          "activeSite": {
+            "type": "object",
+            "description": "Active Site data"
+          },
+          "cofactors": {
+            "description": "Cofactors",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "coenzymes": {
+            "description": "Coenzymes",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "inhibitors": {
+            "description": "Inhibitors",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "kinetics": {
+            "type": "object",
+            "description": "Kinetic parameters"
+          },
+          "sequence": {
+            "type": "string",
+            "description": "Amino acid sequence (convenience field)"
+          },
           "metadata": {
             "type": "object",
-            "description": "Metadata (JSON)"
-          },
-          "chains": {
-            "type": "object",
-            "description": "Chains data (JSON)"
+            "description": "Additional metadata"
           }
         },
         "required": [
-          "name"
+          "type",
+          "names"
         ]
       },
       "UpdateProteinDto": {
         "type": "object",
         "properties": {
-          "name": {
+          "type": {
             "type": "string",
-            "description": "Name of the protein"
+            "description": "Type of the protein",
+            "enum": [
+              "protein",
+              "enzyme"
+            ]
+          },
+          "names": {
+            "type": "object",
+            "description": "Names object (iupac, common, etc.)"
           },
           "description": {
             "type": "string",
             "description": "Description"
-          },
-          "sequence": {
-            "type": "string",
-            "description": "Amino acid sequence"
           },
           "pdbId": {
             "type": "string",
             "description": "PDB ID"
           },
+          "chains": {
+            "description": "Chains data",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pdbMetadata": {
+            "type": "object",
+            "description": "PDB Metadata"
+          },
+          "polymerEntities": {
+            "description": "Polymer Entities",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nonPolymerEntities": {
+            "description": "Non-Polymer Entities",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "assemblies": {
+            "description": "Assemblies",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "annotations": {
+            "type": "object",
+            "description": "Annotations"
+          },
+          "validation": {
+            "type": "object",
+            "description": "Validation metrics"
+          },
+          "ligands": {
+            "description": "Ligands bound to the protein",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "classification": {
+            "type": "string",
+            "description": "Classification"
+          },
+          "organism": {
+            "type": "object",
+            "description": "Organism source"
+          },
+          "experimental": {
+            "type": "object",
+            "description": "Experimental data"
+          },
+          "ecNumber": {
+            "type": "string",
+            "description": "EC Number (for enzymes)"
+          },
+          "enzymeClass": {
+            "type": "string",
+            "description": "Enzyme Class"
+          },
+          "activeSite": {
+            "type": "object",
+            "description": "Active Site data"
+          },
+          "cofactors": {
+            "description": "Cofactors",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "coenzymes": {
+            "description": "Coenzymes",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "inhibitors": {
+            "description": "Inhibitors",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "kinetics": {
+            "type": "object",
+            "description": "Kinetic parameters"
+          },
+          "sequence": {
+            "type": "string",
+            "description": "Amino acid sequence (convenience field)"
+          },
           "metadata": {
             "type": "object",
-            "description": "Metadata (JSON)"
-          },
-          "chains": {
-            "type": "object",
-            "description": "Chains data (JSON)"
+            "description": "Additional metadata"
           }
         },
         "required": [
-          "name"
+          "type",
+          "names"
         ]
       },
       "CreateReactionDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the reaction"
+          "names": {
+            "type": "object",
+            "description": "Names object (iupac, common, etc.)"
           },
           "description": {
             "type": "string",
-            "description": "Description"
+            "description": "Description of the reaction"
           },
-          "reactionString": {
+          "category": {
             "type": "string",
-            "description": "Reaction string (SMILES/SMARTS)"
+            "description": "Category of the reaction"
           },
-          "data": {
-            "type": "object",
-            "description": "ORD Data (JSON)"
+          "tags": {
+            "description": "Tags",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "smarts": {
+            "type": "string",
+            "description": "SMARTS string"
+          },
+          "trajectory": {
+            "type": "string",
+            "description": "Trajectory identifier"
+          },
+          "reaction_arrows": {
+            "type": "string",
+            "description": "Reaction arrows identifier"
+          },
+          "label": {
+            "type": "string",
+            "description": "Display label"
+          },
+          "deltaG": {
+            "type": "string",
+            "description": "Delta G"
+          },
+          "deltaH": {
+            "type": "string",
+            "description": "Delta H"
+          },
+          "k": {
+            "type": "string",
+            "description": "Rate constant k"
+          },
+          "links_ref": {
+            "description": "Reference links",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "video_experiment": {
+            "type": "string",
+            "description": "Video experiment URL"
+          },
+          "reactants": {
+            "description": "Reactants",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "products": {
+            "description": "Products",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "conditions": {
+            "description": "Conditions list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "temperature": {
+            "type": "string",
+            "description": "Temperature"
+          },
+          "solvent": {
+            "type": "string",
+            "description": "Solvent"
+          },
+          "yield": {
+            "type": "number",
+            "description": "Yield percentage"
+          },
+          "reactions": {
+            "description": "ORD Reaction Data",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
-          "name"
+          "names",
+          "description",
+          "category",
+          "reactants",
+          "products"
         ]
       },
       "UpdateReactionDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name of the reaction"
+          "names": {
+            "type": "object",
+            "description": "Names object (iupac, common, etc.)"
           },
           "description": {
             "type": "string",
-            "description": "Description"
+            "description": "Description of the reaction"
           },
-          "reactionString": {
+          "category": {
             "type": "string",
-            "description": "Reaction string (SMILES/SMARTS)"
+            "description": "Category of the reaction"
           },
-          "data": {
-            "type": "object",
-            "description": "ORD Data (JSON)"
+          "tags": {
+            "description": "Tags",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "smarts": {
+            "type": "string",
+            "description": "SMARTS string"
+          },
+          "trajectory": {
+            "type": "string",
+            "description": "Trajectory identifier"
+          },
+          "reaction_arrows": {
+            "type": "string",
+            "description": "Reaction arrows identifier"
+          },
+          "label": {
+            "type": "string",
+            "description": "Display label"
+          },
+          "deltaG": {
+            "type": "string",
+            "description": "Delta G"
+          },
+          "deltaH": {
+            "type": "string",
+            "description": "Delta H"
+          },
+          "k": {
+            "type": "string",
+            "description": "Rate constant k"
+          },
+          "links_ref": {
+            "description": "Reference links",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "video_experiment": {
+            "type": "string",
+            "description": "Video experiment URL"
+          },
+          "reactants": {
+            "description": "Reactants",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "products": {
+            "description": "Products",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "conditions": {
+            "description": "Conditions list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "temperature": {
+            "type": "string",
+            "description": "Temperature"
+          },
+          "solvent": {
+            "type": "string",
+            "description": "Solvent"
+          },
+          "yield": {
+            "type": "number",
+            "description": "Yield percentage"
+          },
+          "reactions": {
+            "description": "ORD Reaction Data",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
-          "name"
+          "names",
+          "description",
+          "category",
+          "reactants",
+          "products"
         ]
       },
       "CreateArticleDto": {

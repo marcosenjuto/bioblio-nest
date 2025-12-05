@@ -11,10 +11,11 @@ export class ProteinsService {
   ) {}
 
   async create(createProteinDto: CreateProteinDto, userId: string) {
-    const { metadata, chains, ...proteinData } = createProteinDto;
+    const { metadata, chains, names, ...proteinData } = createProteinDto;
 
     const proteinCompleteData = {
       ...proteinData,
+      names,
       metadata,
       chains,
     };
@@ -24,27 +25,28 @@ export class ProteinsService {
       userId
     );
 
+    // Derive name for DB
+    const dbName = names.common?.[0] || names.iupac || 'Unknown Protein';
+
     const protein = await this.prisma.protein.create({
       data: {
         ...proteinData,
-        metadata: metadata ? JSON.stringify(metadata) : undefined,
-        chains: chains ? JSON.stringify(chains) : undefined,
+        name: dbName,
+        namesJson: JSON.stringify(names),
+        metadataJson: metadata ? JSON.stringify(metadata) : undefined,
+        chainsJson: chains ? JSON.stringify(chains) : undefined,
         object: {
           connect: { id: object.id }
         }
       },
     });
 
-    return protein;
+    return this.mapToDto(protein);
   }
 
   async findAll() {
     const proteins = await this.prisma.protein.findMany();
-    return proteins.map(p => ({
-      ...p,
-      metadata: p.metadata ? JSON.parse(p.metadata) : null,
-      chains: p.chains ? JSON.parse(p.chains) : null,
-    }));
+    return proteins.map(p => this.mapToDto(p));
   }
 
   async findOne(id: string) {
@@ -54,34 +56,31 @@ export class ProteinsService {
     });
     if (!protein) throw new NotFoundException(`Protein with ID ${id} not found`);
     
-    return {
-      ...protein,
-      metadata: protein.metadata ? JSON.parse(protein.metadata) : null,
-      chains: protein.chains ? JSON.parse(protein.chains) : null,
-    };
+    return this.mapToDto(protein);
   }
 
   async update(id: string, updateProteinDto: UpdateProteinDto) {
-    const { metadata, chains, ...proteinData } = updateProteinDto;
+    const { metadata, chains, names, ...proteinData } = updateProteinDto;
     
+    const dbName = names ? (names.common?.[0] || names.iupac) : undefined;
+
     const protein = await this.prisma.protein.update({
       where: { id },
       data: {
         ...proteinData,
-        metadata: metadata ? JSON.stringify(metadata) : undefined,
-        chains: chains ? JSON.stringify(chains) : undefined,
+        name: dbName,
+        namesJson: names ? JSON.stringify(names) : undefined,
+        metadataJson: metadata ? JSON.stringify(metadata) : undefined,
+        chainsJson: chains ? JSON.stringify(chains) : undefined,
       }
     });
 
-    return {
-      ...protein,
-      metadata: protein.metadata ? JSON.parse(protein.metadata) : null,
-      chains: protein.chains ? JSON.parse(protein.chains) : null,
-    };
+    return this.mapToDto(protein);
   }
 
   async remove(id: string) {
-    return this.prisma.protein.delete({ where: { id } });
+    const protein = await this.prisma.protein.delete({ where: { id } });
+    return this.mapToDto(protein);
   }
 
   async proposeChanges(id: string, userId: string, updateProteinDto: UpdateProteinDto) {
@@ -95,5 +94,17 @@ export class ProteinsService {
       userId,
       { data: updateProteinDto, comment: 'Proposed changes' }
     );
+  }
+
+  private mapToDto(protein: any) {
+    const { namesJson, metadataJson, chainsJson, detailsJson, ...cleanProtein } = protein;
+    
+    return {
+      ...cleanProtein,
+      names: namesJson ? JSON.parse(namesJson) : null,
+      metadata: metadataJson ? JSON.parse(metadataJson) : null,
+      chains: chainsJson ? JSON.parse(chainsJson) : null,
+      details: detailsJson ? JSON.parse(detailsJson) : null,
+    };
   }
 }

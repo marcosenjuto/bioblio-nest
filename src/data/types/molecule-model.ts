@@ -1,4 +1,6 @@
 import { Atom } from './atom-model';
+import { FunctionalGroup } from './functional-group-model';
+import { Names } from './names-model';
 
 export interface Molecule {
   // Identifiers
@@ -7,17 +9,10 @@ export interface Molecule {
   cas?: string;
   chemblId?: string;
   type: 'small-molecule' | 'protein' | 'enzyme' | 'nucleic-acid' | 'other';
+  functionalGroups?: FunctionalGroup[];
 
   // Names
-  names: {
-    iupac: string;
-    common: string[];
-    trivial?: string;
-
-    // New – localized names
-    commonLocalized?: { [languageCode: string]: string[] };   // e.g., { es: ["tolueno"], fr: ["toluène"] }
-    trivialLocalized?: { [languageCode: string]: string };    // e.g., { es: "acetona clásica" }
-  };
+  names: Names;
 
   // Structure
   structure: {

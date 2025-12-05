@@ -1,0 +1,872 @@
+[
+  {
+    "id": "alcohols",
+    "name": "Alcohol",
+    "names": {
+      "iupac": "hydroxyl",
+      "common": [
+        "alcohol"
+      ],
+      "commonLocalized": {
+        "es": [
+          "alcohol"
+        ]
+      }
+    },
+    "formula": "R-OH",
+    "smiles": "*O |$R;;$|",
+    "description": "Organic compounds containing a hydroxyl group (-OH) bonded to a carbon atom",
+    "classification": {
+      "iupac": "hydroxyl",
+      "common": "alcohol"
+    },
+    "samples": [
+      {
+        "compound_name": "EtOH",
+        "smiles": "CCO",
+        "count": 1,
+        "reaction_id": 2
+      },
+      {
+        "compound_name": "ethanol",
+        "smiles": "C(C)O",
+        "count": 1,
+        "reaction_id": 3
+      },
+      {
+        "compound_name": "2-Benzyloxymethyl-2-cyclohexylpropan-1,3-diol",
+        "smiles": "C(C1=CC=CC=C1)OCC(CO)(CO)C1CCCCC1",
+        "count": 2,
+        "reaction_id": 8
+      },
+      {
+        "compound_name": "methanol",
+        "smiles": "CO",
+        "count": 1,
+        "reaction_id": 9
+      },
+      {
+        "compound_name": "3,5-Dihydroxymethyl-2,6-dimethyl-4-(4-fluorophenyl)-pyridine",
+        "smiles": "OCC=1C(=NC(=C(C1C1=CC=C(C=C1)F)CO)C)C",
+        "count": 2,
+        "reaction_id": 11
+      }
+    ]
+  },
+  {
+    "id": "aldehydes",
+    "name": "Aldehyde",
+    "names": {
+      "iupac": "CHO",
+      "common": [
+        "aldehyde"
+      ],
+      "commonLocalized": {
+        "es": [
+          "aldehído"
+        ]
+      }
+    },
+    "formula": "R-CHO",
+    "smiles": "*C=O |$R;;;$|",
+    "description": "Organic compounds containing a formyl group (C=O with H)",
+    "classification": {
+      "iupac": "CHO",
+      "common": "aldehyde"
+    },
+    "samples": [
+      {
+        "compound_name": "3-(4-chlorophenyl)-3-ketopropionaldehyde",
+        "smiles": "ClC1=CC=C(C=C1)C(CC=O)=O",
+        "count": 1,
+        "reaction_id": 7
+      },
+      {
+        "compound_name": "4-bromobenzaldehyde",
+        "smiles": "BrC1=CC=C(C=O)C=C1",
+        "count": 1,
+        "reaction_id": 14
+      },
+      {
+        "compound_name": "trifluoroacetic acid",
+        "smiles": "C(C=O)(=O)O",
+        "count": 1,
+        "reaction_id": 34
+      },
+      {
+        "compound_name": "2,2-Di(benzylthiomethyl)pentanal",
+        "smiles": "C(C1=CC=CC=C1)SCC(C=O)(CCC)CSCC1=CC=CC=C1",
+        "count": 1,
+        "reaction_id": 39
+      },
+      {
+        "compound_name": "2-chloroindole-3-carboxaldehyde",
+        "smiles": "ClC=1NC2=CC=CC=C2C1C=O",
+        "count": 1,
+        "reaction_id": 42
+      }
+    ]
+  },
+  {
+    "id": "ketones",
+    "name": "Ketone",
+    "names": {
+      "iupac": "carbonyl",
+      "common": [
+        "ketone"
+      ],
+      "commonLocalized": {
+        "es": [
+          "cetona"
+        ]
+      }
+    },
+    "formula": "R-CO-R'",
+    "smiles": "*C(*)=O |$R;;;R';;$|",
+    "description": "Organic compounds with a carbonyl group bonded to two carbon atoms",
+    "classification": {
+      "iupac": "carbonyl",
+      "common": "ketone"
+    },
+    "samples": [
+      {
+        "compound_name": "3-(4-chlorophenyl)-3-ketopropionaldehyde",
+        "smiles": "ClC1=CC=C(C=C1)C(CC=O)=O",
+        "count": 1,
+        "reaction_id": 7
+      },
+      {
+        "compound_name": "2-bromo-1-(2,4-dichlorophenyl)-1-propanone",
+        "smiles": "BrC(C(=O)C1=C(C=C(C=C1)Cl)Cl)C",
+        "count": 1,
+        "reaction_id": 19
+      },
+      {
+        "compound_name": "cyclopropyl phenyl ketone",
+        "smiles": "C1(=CC=CC=C1)C(=O)C1CC1",
+        "count": 1,
+        "reaction_id": 21
+      },
+      {
+        "compound_name": "acetone",
+        "smiles": "CC(=O)C",
+        "count": 1,
+        "reaction_id": 26
+      },
+      {
+        "compound_name": "6-bromo-2-tetralone",
+        "smiles": "BrC=1C=C2CCC(CC2=CC1)=O",
+        "count": 1,
+        "reaction_id": 44
+      }
+    ]
+  },
+  {
+    "id": "carboxylic_acids",
+    "name": "Carboxylic acid",
+    "names": {
+      "iupac": "carboxyl",
+      "common": [
+        "carboxylic acid"
+      ],
+      "commonLocalized": {
+        "es": [
+          "ácido carboxílico"
+        ]
+      }
+    },
+    "formula": "R-COOH",
+    "smiles": "*C(=O)O |$R;;;;$|",
+    "description": "Organic acids containing a carboxyl group (-COOH)",
+    "classification": {
+      "iupac": "carboxyl",
+      "common": "carboxylic acid"
+    },
+    "samples": [
+      {
+        "compound_name": "N-methyl-N-phenethyl-2-[5-benzyloxy-3-(2-carboxyethyl)indol-1-yl]acetamide",
+        "smiles": "CN(C(CN1C=C(C2=CC(=CC=C12)OCC1=CC=CC=C1)CCC(=O)O)=O)CCC1=CC=CC=C1",
+        "count": 1,
+        "reaction_id": 3
+      },
+      {
+        "compound_name": "2(S)-(Piperidin-2-on-1-yl)-3-methylbutanoic acid",
+        "smiles": "N1(C(CCCC1)=O)[C@H](C(=O)O)C(C)C",
+        "count": 1,
+        "reaction_id": 9
+      },
+      {
+        "compound_name": "3,3-dimethylbutyryl chloride",
+        "smiles": "FC(F)(F)C(=O)O",
+        "count": 1,
+        "reaction_id": 16
+      },
+      {
+        "compound_name": "3-nitrocinnamic acid",
+        "smiles": "[N+](=O)([O-])C=1C=C(C=CC(=O)O)C=CC1",
+        "count": 1,
+        "reaction_id": 18
+      },
+      {
+        "compound_name": "ammonium acetate",
+        "smiles": "C(C)(=O)[O-]",
+        "count": 1,
+        "reaction_id": 21
+      }
+    ]
+  },
+  {
+    "id": "esters",
+    "name": "Ester",
+    "names": {
+      "iupac": "ester",
+      "common": [
+        "ester"
+      ],
+      "commonLocalized": {
+        "es": [
+          "éster"
+        ]
+      }
+    },
+    "formula": "R-COO-R'",
+    "smiles": "*C(=O)O* |$R;;;R'$|",
+    "description": "Organic compounds derived from carboxylic acids and alcohols",
+    "classification": {
+      "iupac": "ester",
+      "common": "ester"
+    },
+    "samples": [
+      {
+        "compound_name": "DMF",
+        "smiles": "NCC1=CC(=C(C(=O)OC)C=C1)O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-(3-hydroxy-4-methoxycarbonyl-benzyl) -3-(3-indolyl)propanamide",
+        "smiles": "OC=1C=C(CNC(CCC2=CNC3=CC=CC=C23)=O)C=CC1C(=O)OC",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-methyl-N-phenethyl-2-[5-benzyloxy-3-(2-carbethoxyethyl)indol-1-yl]acetamide",
+        "smiles": "CN(C(CN1C=C(C2=CC(=CC=C12)OCC1=CC=CC=C1)CCC(=O)OCC)=O)CCC1=CC=CC=C1",
+        "count": 1,
+        "reaction_id": 3
+      },
+      {
+        "compound_name": "Diethyl 2-benzyloxymethyl-2-cyclohexylmalonate",
+        "smiles": "C(C1=CC=CC=C1)OCC(C(=O)OCC)(C(=O)OCC)C1CCCCC1",
+        "count": 2,
+        "reaction_id": 8
+      },
+      {
+        "compound_name": "Methyl 2(S)-(piperidin-2-on-1-yl)-3-methylbutanoate",
+        "smiles": "N1(C(CCCC1)=O)[C@H](C(=O)OC)C(C)C",
+        "count": 1,
+        "reaction_id": 9
+      }
+    ]
+  },
+  {
+    "id": "ethers",
+    "name": "Ether",
+    "names": {
+      "iupac": "ether",
+      "common": [
+        "ether"
+      ],
+      "commonLocalized": {
+        "es": [
+          "éter"
+        ]
+      }
+    },
+    "formula": "R-O-R'",
+    "smiles": "*O* |$R;R'$|",
+    "description": "Organic compounds with an oxygen atom connected to two alkyl or aryl groups",
+    "classification": {
+      "iupac": "ether",
+      "common": "ether"
+    },
+    "samples": [
+      {
+        "compound_name": "DEPC",
+        "smiles": "CCOC(=O)OC(=O)OCC",
+        "count": 3,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "DMF",
+        "smiles": "NCC1=CC(=C(C(=O)OC)C=C1)O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-(3-hydroxy-4-methoxycarbonyl-benzyl) -3-(3-indolyl)propanamide",
+        "smiles": "OC=1C=C(CNC(CCC2=CNC3=CC=CC=C23)=O)C=CC1C(=O)OC",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-methyl-N-phenethyl-2-[5-benzyloxy-3-(2-carbethoxyethyl)indol-1-yl]acetamide",
+        "smiles": "CN(C(CN1C=C(C2=CC(=CC=C12)OCC1=CC=CC=C1)CCC(=O)OCC)=O)CCC1=CC=CC=C1",
+        "count": 2,
+        "reaction_id": 3
+      },
+      {
+        "compound_name": "N-methyl-N-phenethyl-2-[5-benzyloxy-3-(2-carboxyethyl)indol-1-yl]acetamide",
+        "smiles": "CN(C(CN1C=C(C2=CC(=CC=C12)OCC1=CC=CC=C1)CCC(=O)O)=O)CCC1=CC=CC=C1",
+        "count": 1,
+        "reaction_id": 3
+      }
+    ]
+  },
+  {
+    "id": "amines",
+    "name": "Amine",
+    "names": {
+      "iupac": "amino",
+      "common": [
+        "amine"
+      ],
+      "commonLocalized": {
+        "es": [
+          "amina"
+        ]
+      }
+    },
+    "formula": "R-NH2",
+    "smiles": "*N |$R;;$|",
+    "description": "Organic compounds derived from ammonia by replacement of hydrogen atoms",
+    "classification": {
+      "iupac": "amino",
+      "common": "amine"
+    },
+    "samples": [
+      {
+        "compound_name": "N-benzyl-4-(3-indolyl)butanamide",
+        "smiles": "C(C1=CC=CC=C1)NC(CCCC1=CNC2=CC=CC=C12)=O",
+        "count": 2,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "triethylamine",
+        "smiles": "C(C)N(CC)CC",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "DMF",
+        "smiles": "NCC1=CC(=C(C(=O)OC)C=C1)O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-(3-hydroxy-4-methoxycarbonyl-benzyl) -3-(3-indolyl)propanamide",
+        "smiles": "OC=1C=C(CNC(CCC2=CNC3=CC=CC=C23)=O)C=CC1C(=O)OC",
+        "count": 2,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "2,5-dimethylaniline",
+        "smiles": "CC1=C(N)C=C(C=C1)C",
+        "count": 1,
+        "reaction_id": 2
+      }
+    ]
+  },
+  {
+    "id": "amides",
+    "name": "Amide",
+    "names": {
+      "iupac": "carboxamide",
+      "common": [
+        "amide"
+      ],
+      "commonLocalized": {
+        "es": [
+          "amida"
+        ]
+      }
+    },
+    "formula": "R-CO-NH2",
+    "smiles": "*C(=O)N |$R;;;;$|",
+    "description": "Organic compounds containing a carbonyl group linked to a nitrogen atom",
+    "classification": {
+      "iupac": "carboxamide",
+      "common": "amide"
+    },
+    "samples": [
+      {
+        "compound_name": "N-benzyl-4-(3-indolyl)butanamide",
+        "smiles": "C(C1=CC=CC=C1)NC(CCCC1=CNC2=CC=CC=C12)=O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-(3-hydroxy-4-methoxycarbonyl-benzyl) -3-(3-indolyl)propanamide",
+        "smiles": "OC=1C=C(CNC(CCC2=CNC3=CC=CC=C23)=O)C=CC1C(=O)OC",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-methyl-N-phenethyl-2-[5-benzyloxy-3-(2-carbethoxyethyl)indol-1-yl]acetamide",
+        "smiles": "CN(C(CN1C=C(C2=CC(=CC=C12)OCC1=CC=CC=C1)CCC(=O)OCC)=O)CCC1=CC=CC=C1",
+        "count": 1,
+        "reaction_id": 3
+      },
+      {
+        "compound_name": "N-methyl-N-phenethyl-2-[5-benzyloxy-3-(2-carboxyethyl)indol-1-yl]acetamide",
+        "smiles": "CN(C(CN1C=C(C2=CC(=CC=C12)OCC1=CC=CC=C1)CCC(=O)O)=O)CCC1=CC=CC=C1",
+        "count": 1,
+        "reaction_id": 3
+      },
+      {
+        "compound_name": "K2CO3",
+        "smiles": "N1[C@@H](C(=O)N)CCC1",
+        "count": 1,
+        "reaction_id": 5
+      }
+    ]
+  },
+  {
+    "id": "nitriles",
+    "name": "Nitrile",
+    "names": {
+      "iupac": "cyano",
+      "common": [
+        "nitrile"
+      ],
+      "commonLocalized": {
+        "es": [
+          "nitrilo"
+        ]
+      }
+    },
+    "formula": "R-C≡N",
+    "smiles": "*C#N |$R;;$|",
+    "description": "Organic compounds containing a carbon-nitrogen triple bond",
+    "classification": {
+      "iupac": "cyano",
+      "common": "nitrile"
+    },
+    "samples": [
+      {
+        "compound_name": "6-chloropyridine-3-carbonitrile",
+        "smiles": "ClC1=CC=C(C=N1)C#N",
+        "count": 1,
+        "reaction_id": 10
+      },
+      {
+        "compound_name": "6-(octyloxy)pyridine-3-carbonitrile",
+        "smiles": "C(CCCCCCC)OC1=CC=C(C=N1)C#N",
+        "count": 1,
+        "reaction_id": 10
+      },
+      {
+        "compound_name": "Trimethyl orthoacetate",
+        "smiles": "C(C)#N",
+        "count": 1,
+        "reaction_id": 12
+      },
+      {
+        "compound_name": "methanol",
+        "smiles": "C(#N)[BH3-]",
+        "count": 1,
+        "reaction_id": 21
+      },
+      {
+        "compound_name": "Cis-3-thiocyanoacrylic acid",
+        "smiles": "S(C#N)\\C=C/C(=O)O",
+        "count": 1,
+        "reaction_id": 40
+      }
+    ]
+  },
+  {
+    "id": "nitro_groups",
+    "name": "Nitro group",
+    "names": {
+      "iupac": "nitro",
+      "common": [
+        "nitro group"
+      ],
+      "commonLocalized": {
+        "es": [
+          "grupo nitro"
+        ]
+      }
+    },
+    "formula": "R-NO2",
+    "smiles": "*[N+](=O)[O-] |$R;;;;;$|",
+    "description": "Functional group containing nitrogen bonded to two oxygen atoms",
+    "classification": {
+      "iupac": "nitro",
+      "common": "nitro group"
+    },
+    "samples": [
+      {
+        "compound_name": "3-nitrocinnamic acid",
+        "smiles": "[N+](=O)([O-])C=1C=C(C=CC(=O)O)C=CC1",
+        "count": 1,
+        "reaction_id": 18
+      },
+      {
+        "compound_name": "(E)-3-(3-Nitrophenyl)-2-propenoic acid, ethyl ester",
+        "smiles": "[N+](=O)([O-])C=1C=C(C=CC1)/C=C/C(=O)OCC",
+        "count": 1,
+        "reaction_id": 18
+      },
+      {
+        "compound_name": "2-nitro-thiophene",
+        "smiles": "[N+](=O)([O-])C=1SC=CC1",
+        "count": 1,
+        "reaction_id": 23
+      },
+      {
+        "compound_name": "2-nitro-3-thiophenamine",
+        "smiles": "[N+](=O)([O-])C=1SC=CC1N",
+        "count": 1,
+        "reaction_id": 23
+      },
+      {
+        "compound_name": "5-(2-nitroethenyl)-1H-indole",
+        "smiles": "[N+](=O)([O-])C=CC=1C=C2C=CNC2=CC1",
+        "count": 1,
+        "reaction_id": 55
+      }
+    ]
+  },
+  {
+    "id": "halides",
+    "name": "Halide",
+    "names": {
+      "iupac": "halo",
+      "common": [
+        "halide"
+      ],
+      "commonLocalized": {
+        "es": [
+          "haluro"
+        ]
+      }
+    },
+    "formula": "R-X",
+    "smiles": "*[X] |$R;X$|",
+    "description": "Organic compounds containing fluorine, chlorine, bromine, or iodine",
+    "classification": {
+      "iupac": "halo",
+      "common": "halide"
+    },
+    "samples": [
+      {
+        "compound_name": "methyl 4-(aminomethyl)-2-hydroxybenzoate hydrochloride",
+        "smiles": "Cl",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "2-methyl bromopropane",
+        "smiles": "CC(CBr)C",
+        "count": 1,
+        "reaction_id": 4
+      },
+      {
+        "compound_name": "p-fluorobenzylbromide",
+        "smiles": "FC1=CC=C(CBr)C=C1",
+        "count": 2,
+        "reaction_id": 5
+      },
+      {
+        "compound_name": "(R)-prolinamide hydrochloride",
+        "smiles": "Cl",
+        "count": 1,
+        "reaction_id": 5
+      },
+      {
+        "compound_name": "(R)-Prolinamide hydrochloride",
+        "smiles": "Cl",
+        "count": 1,
+        "reaction_id": 5
+      }
+    ]
+  },
+  {
+    "id": "aromatic_rings",
+    "name": "Aromatic ring",
+    "names": {
+      "iupac": "phenyl",
+      "common": [
+        "aromatic ring"
+      ],
+      "commonLocalized": {
+        "es": [
+          "anillo aromático"
+        ]
+      }
+    },
+    "formula": "C6H5-R",
+    "smiles": "c1ccccc1* |$;;;;;;;R$|",
+    "description": "Cyclic compounds with delocalized pi electrons (benzene-like)",
+    "classification": {
+      "iupac": "phenyl",
+      "common": "aromatic ring"
+    },
+    "samples": [
+      {
+        "compound_name": "N-benzyl-4-(3-indolyl)butanamide",
+        "smiles": "C(C1=CC=CC=C1)NC(CCCC1=CNC2=CC=CC=C12)=O",
+        "count": 2,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "DMF",
+        "smiles": "NCC1=CC(=C(C(=O)OC)C=C1)O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-(3-hydroxy-4-methoxycarbonyl-benzyl) -3-(3-indolyl)propanamide",
+        "smiles": "OC=1C=C(CNC(CCC2=CNC3=CC=CC=C23)=O)C=CC1C(=O)OC",
+        "count": 2,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "2,5-dimethylaniline",
+        "smiles": "CC1=C(N)C=C(C=C1)C",
+        "count": 1,
+        "reaction_id": 2
+      },
+      {
+        "compound_name": "benzotriazole",
+        "smiles": "N1N=NC2=C1C=CC=C2",
+        "count": 1,
+        "reaction_id": 2
+      }
+    ]
+  },
+  {
+    "id": "phenols",
+    "name": "Phenol",
+    "names": {
+      "iupac": "phenol",
+      "common": [
+        "phenol"
+      ],
+      "commonLocalized": {
+        "es": [
+          "fenol"
+        ]
+      }
+    },
+    "formula": "Ar-OH",
+    "smiles": "c1ccccc1O |;;;;;;|",
+    "description": "Aromatic compounds with a hydroxyl group attached to a benzene ring",
+    "classification": {
+      "iupac": "phenol",
+      "common": "phenol"
+    },
+    "samples": [
+      {
+        "compound_name": "DMF",
+        "smiles": "NCC1=CC(=C(C(=O)OC)C=C1)O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-(3-hydroxy-4-methoxycarbonyl-benzyl) -3-(3-indolyl)propanamide",
+        "smiles": "OC=1C=C(CNC(CCC2=CNC3=CC=CC=C23)=O)C=CC1C(=O)OC",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "phenol",
+        "smiles": "C1(=CC=CC=C1)O",
+        "count": 1,
+        "reaction_id": 40
+      },
+      {
+        "compound_name": "ethyl N-(2-fluoro-4-chloro-5-hydroxyphenyl)carbamate",
+        "smiles": "FC1=C(C=C(C(=C1)Cl)O)NC(OCC)=O",
+        "count": 1,
+        "reaction_id": 69
+      },
+      {
+        "compound_name": "NaOH",
+        "smiles": "CN(C=1C=C(C=CC1)O)C",
+        "count": 1,
+        "reaction_id": 85
+      }
+    ]
+  },
+  {
+    "id": "sulfides",
+    "name": "Sulfide",
+    "names": {
+      "iupac": "thioether",
+      "common": [
+        "sulfide"
+      ],
+      "commonLocalized": {
+        "es": [
+          "sulfuro"
+        ]
+      }
+    },
+    "formula": "R-S-R'",
+    "smiles": "*S* |$R;R'$|",
+    "description": "Organic compounds with a sulfur atom bonded to two carbon atoms",
+    "classification": {
+      "iupac": "thioether",
+      "common": "sulfide"
+    },
+    "samples": [
+      {
+        "compound_name": "1-t-Butyloxycarbonyl-2-(2-methylthioethyl)-4-(2-methylphenyl)piperazine",
+        "smiles": "C(C)(C)(C)OC(=O)N1C(CN(CC1)C1=C(C=CC=C1)C)CCSC",
+        "count": 1,
+        "reaction_id": 20
+      },
+      {
+        "compound_name": "p-methoxybenzyl 7-{(Z)-2-(2-tritylaminothiazol-4-yl)-2-methoxyiminoacetamido}-3-chloromethyl-3-cephem-4-carboxylate",
+        "smiles": "C(C1=CC=CC=C1)(C1=CC=CC=C1)(C1=CC=CC=C1)NC=1SC=C(N1)/C(/C(=O)NC1[C@@H]2N(C(=C(CS2)CCl)C(=O)OCC2=CC=C(C=C2)OC)C1=O)=N/OC",
+        "count": 1,
+        "reaction_id": 27
+      },
+      {
+        "compound_name": "p-methoxybenzyl 7-{(Z)-2-(2-tritylaminothiazol-4-yl)-2-methoxyiminoacetamido]-3-(thiazolo[5,4-c]pyridin-2-yl)thiomethyl-3-cephem-4-carboxylate",
+        "smiles": "C(C1=CC=CC=C1)(C1=CC=CC=C1)(C1=CC=CC=C1)NC=1SC=C(N1)/C(/C(=O)NC1[C@@H]2N(C(=C(CS2)CSC=2SC=3C=NC=CC3N2)C(=O)OCC2=CC=C(C=C2)OC)C1=O)=N/OC",
+        "count": 2,
+        "reaction_id": 27
+      },
+      {
+        "compound_name": "2,2-di-(benzylthiomethyl)pentan-1-ol",
+        "smiles": "C(C1=CC=CC=C1)SCC(CO)(CCC)CSCC1=CC=CC=C1",
+        "count": 2,
+        "reaction_id": 39
+      },
+      {
+        "compound_name": "2,2-Di(benzylthiomethyl)pentanal",
+        "smiles": "C(C1=CC=CC=C1)SCC(C=O)(CCC)CSCC1=CC=CC=C1",
+        "count": 2,
+        "reaction_id": 39
+      }
+    ]
+  },
+  {
+    "id": "thiols",
+    "name": "Thiol",
+    "names": {
+      "iupac": "sulfanyl",
+      "common": [
+        "thiol"
+      ],
+      "commonLocalized": {
+        "es": [
+          "tiol"
+        ]
+      }
+    },
+    "formula": "R-SH",
+    "smiles": "*S |$R;;$|",
+    "description": "Organic compounds containing a sulfhydryl group (-SH)",
+    "classification": {
+      "iupac": "sulfanyl",
+      "common": "thiol"
+    },
+    "samples": [
+      {
+        "compound_name": "2-mercaptothiazolo[5,4-c]pyridine",
+        "smiles": "SC=1SC=2C=NC=CC2N1",
+        "count": 1,
+        "reaction_id": 27
+      }
+    ]
+  },
+  {
+    "id": "azides",
+    "name": "Azide",
+    "names": {
+      "iupac": "azido",
+      "common": [
+        "azide"
+      ],
+      "commonLocalized": {
+        "es": [
+          "azida"
+        ]
+      }
+    },
+    "formula": "R-N3",
+    "smiles": "*N=[N+]=[N-] |$R;;;;;$|",
+    "description": "Functional group with three nitrogen atoms bonded together",
+    "classification": {
+      "iupac": "azido",
+      "common": "azide"
+    },
+    "samples": [
+      {
+        "compound_name": "phenacyl azide",
+        "smiles": "C(C(=O)C1=CC=CC=C1)N=[N+]=[N-]",
+        "count": 1,
+        "reaction_id": 78
+      }
+    ]
+  },
+  {
+    "id": "alkenes",
+    "name": "Alkene",
+    "names": {
+      "iupac": "alkenyl",
+      "common": [
+        "alkene"
+      ],
+      "commonLocalized": {
+        "es": [
+          "alqueno"
+        ]
+      }
+    },
+    "formula": "C=C",
+    "smiles": "*C=C* |$R;;;R'$|",
+    "description": "Hydrocarbons containing carbon-carbon double bonds",
+    "classification": {
+      "iupac": "alkenyl",
+      "common": "alkene"
+    },
+    "samples": [
+      {
+        "compound_name": "DEPC",
+        "smiles": "CCOC(=O)OC(=O)OCC",
+        "count": 2,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-benzyl-4-(3-indolyl)butanamide",
+        "smiles": "C(C1=CC=CC=C1)NC(CCCC1=CNC2=CC=CC=C12)=O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "DMF",
+        "smiles": "NCC1=CC(=C(C(=O)OC)C=C1)O",
+        "count": 1,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "N-(3-hydroxy-4-methoxycarbonyl-benzyl) -3-(3-indolyl)propanamide",
+        "smiles": "OC=1C=C(CNC(CCC2=CNC3=CC=CC=C23)=O)C=CC1C(=O)OC",
+        "count": 2,
+        "reaction_id": 1
+      },
+      {
+        "compound_name": "formaldehyde",
+        "smiles": "C=O",
+        "count": 1,
+        "reaction_id": 2
+      }
+    ]
+  }
+]

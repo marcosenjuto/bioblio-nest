@@ -11,11 +11,19 @@ export class ReactionsService {
   ) {}
 
   async create(createReactionDto: CreateReactionDto, userId: string) {
-    const { data, ...reactionData } = createReactionDto;
+    const { 
+        names, description, category, smarts, 
+        reactants, products, reactions, 
+        ...otherData 
+    } = createReactionDto;
+
+    const dataJsonObj = {
+        ...otherData,
+        reactions
+    };
 
     const reactionCompleteData = {
-      ...reactionData,
-      data,
+      ...createReactionDto
     };
 
     const { object } = await this.objectVersionsService.createObject(
@@ -23,25 +31,33 @@ export class ReactionsService {
       userId
     );
 
+    // Derive name for DB
+    const dbName = names.common?.[0] || names.iupac || 'Unknown Reaction';
+
     const reaction = await this.prisma.reaction.create({
       data: {
-        ...reactionData,
-        data: data ? JSON.stringify(data) : undefined,
+        name: dbName,
+        namesJson: JSON.stringify(names),
+        description,
+        category,
+        reactionString: smarts,
+        
+        reactantsJson: JSON.stringify(reactants),
+        productsJson: JSON.stringify(products),
+        dataJson: JSON.stringify(dataJsonObj),
+        
         object: {
           connect: { id: object.id }
         }
       },
     });
 
-    return reaction;
+    return this.mapToDto(reaction);
   }
 
   async findAll() {
     const reactions = await this.prisma.reaction.findMany();
-    return reactions.map(r => ({
-      ...r,
-      data: r.data ? JSON.parse(r.data) : null,
-    }));
+    return reactions.map(r => this.mapToDto(r));
   }
 
   async findOne(id: string) {
@@ -51,27 +67,39 @@ export class ReactionsService {
     });
     if (!reaction) throw new NotFoundException(`Reaction with ID ${id} not found`);
     
-    return {
-      ...reaction,
-      data: reaction.data ? JSON.parse(reaction.data) : null,
-    };
+    return this.mapToDto(reaction);
   }
 
   async update(id: string, updateReactionDto: UpdateReactionDto) {
-    const { data, ...reactionData } = updateReactionDto;
+    const { 
+        names, description, category, smarts, 
+        reactants, products, reactions, 
+        ...otherData 
+    } = updateReactionDto;
     
+    const dataJsonObj = {
+        ...otherData,
+        reactions
+    };
+
+    const dbName = names ? (names.common?.[0] || names.iupac) : undefined;
+
     const reaction = await this.prisma.reaction.update({
       where: { id },
       data: {
-        ...reactionData,
-        data: data ? JSON.stringify(data) : undefined,
+        name: dbName,
+        namesJson: names ? JSON.stringify(names) : undefined,
+        description,
+        category,
+        reactionString: smarts,
+        
+        reactantsJson: reactants ? JSON.stringify(reactants) : undefined,
+        productsJson: products ? JSON.stringify(products) : undefined,
+        dataJson: JSON.stringify(dataJsonObj),
       }
     });
 
-    return {
-      ...reaction,
-      data: reaction.data ? JSON.parse(reaction.data) : null,
-    };
+    return this.mapToDto(reaction);
   }
 
   async remove(id: string) {
@@ -89,5 +117,22 @@ export class ReactionsService {
       userId,
       { data: updateReactionDto, comment: 'Proposed changes' }
     );
+  }
+
+  private mapToDto(reaction: any) {
+    const data = reaction.dataJson ? JSON.parse(reaction.dataJson) : {};
+    const { reactions, ...otherData } = data;
+    
+    return {
+      id: reaction.id,
+      names: reaction.namesJson ? JSON.parse(reaction.namesJson) : { common: [reaction.name], iupac: reaction.name },
+      description: reaction.description,
+      category: reaction.category,
+      smarts: reaction.reactionString,
+      reactants: reaction.reactantsJson ? JSON.parse(reaction.reactantsJson) : [],
+      products: reaction.productsJson ? JSON.parse(reaction.productsJson) : [],
+      reactions: reactions || [],
+      ...otherData
+    };
   }
 }

@@ -46,8 +46,8 @@ async function bootstrap() {
 
   // Swagger API Documentation Configuration
   const config = new DocumentBuilder()
-    .setTitle('♻️ Recycling Centers Management API')
-    .setDescription('Enterprise-grade API for managing recycling centers, materials, and user operations')
+    .setTitle('🧬 Bioblio API')
+    .setDescription('Scientific knowledge base API for managing molecules, proteins, reactions, and articles')
     .setVersion('1.0')
     .addBearerAuth(
       {
@@ -62,9 +62,11 @@ async function bootstrap() {
     )
     .addTag('Authentication', 'User authentication and authorization')
     .addTag('Users', 'User management operations')
-    .addTag('Centers', 'Recycling center management')
-    .addTag('Materials', 'Material type management')
-    .addTag('Products', 'Product catalog management')
+    .addTag('Molecules', 'Molecule data management')
+    .addTag('Proteins', 'Protein data management')
+    .addTag('Reactions', 'Chemical reaction management')
+    .addTag('Articles', 'Scientific article management')
+    .addTag('Moderation', 'Content moderation workflow')
     .setContact(
       'The Wealthiest Programmer',
       'https://github.com/wealthiest-programmer',

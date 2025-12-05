@@ -1,9 +1,11 @@
 import { Molecule } from './molecule-model';
 import { Atom } from './atom-model';
+import { Names } from './names-model';
 
 export interface Residue {
   id: string;
   name: string;         // e.g., "ALA", "HIS"
+  names: Names;
   sequenceNumber: number;
   chainIdentifier: string;
   atoms: Atom[];
@@ -67,6 +69,7 @@ export interface PolymerEntity {
 export interface NonPolymerEntity {
   entityId: string;
   chemicalName: string;
+  names: Names;
   chemicalId: string;
   type: 'ligand' | 'ion' | 'cofactor' | 'other';
   formula: string;

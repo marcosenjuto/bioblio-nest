@@ -1,4 +1,5 @@
 import { Molecule } from './molecule-model';
+import { Names } from './names-model';
 
 // --- Reagent Interface ---
 export interface Reagent {
@@ -173,6 +174,7 @@ export interface BioblioReaction {
   // Universal Identifiers
   id: string;
   name: string;
+  names: Names;
   description: string; 
   category: string;
   tags?: string[];
